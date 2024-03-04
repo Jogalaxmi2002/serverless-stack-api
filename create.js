@@ -9,7 +9,7 @@ export const main = handler(async (event, context) => {
     TableName: process.env.tableName,
     Item: {
       // The attributes of the item to be created
-      userId: "123",            // The id of the author
+      userId: event.requestContext.identity.cognitoIdentityId,            // The id of the author
       noteId: uuid.v1(),        // A unique uuid
       content: data.content,     // Parsed from the request body
       attachment: data.attachment, // Parsed from the request body
@@ -17,7 +17,8 @@ export const main = handler(async (event, context) => {
     },
   };
 
-  await dynamoDb.put(params).promise();
+  await dynamoDb.put(params);
+  console.log("hello");
 
   return params.Item;
 });
