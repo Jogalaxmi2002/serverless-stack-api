@@ -1,5 +1,5 @@
 import handler from "./libs/handler-lib";
-import dynamoDb from "./libs/dynamodb-lib";
+import dynamoDB from "./libs/dynamodb-lib";
 
 export const main = handler(async (event, context) => {
   const params = {
@@ -10,7 +10,7 @@ export const main = handler(async (event, context) => {
     },
   };
 
-  const result = await dynamoDb.get(params);
+  const result = await dynamoDB.get(params);
 
   if (!result.Item) {
     throw new Error("Item not found.");

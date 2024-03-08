@@ -11,7 +11,7 @@ export const main = handler(async (event, context) => {
   };
 
   try {
-    const result = await dynamoDb.query(params).promise();
+    const result = await dynamoDb.query(params);
 
     // Return the matching list of items in the response body
     return {
